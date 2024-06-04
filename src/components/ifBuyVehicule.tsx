@@ -1,11 +1,11 @@
 import React from "react";
 
 interface BuyComponent {
-  buy: string;
+  vehicule_neuf_ou_location: string;
   handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const IfBuyVehicule: React.FC<BuyComponent> = ({ buy, handleChange }: BuyComponent)=> {
+const IfBuyVehicule: React.FC<BuyComponent> = ({ vehicule_neuf_ou_location, handleChange }: BuyComponent)=> {
     return(
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -13,10 +13,10 @@ const IfBuyVehicule: React.FC<BuyComponent> = ({ buy, handleChange }: BuyCompone
             </label>
             <div className="relative">
               <select
-                value={buy} 
+                value={vehicule_neuf_ou_location} 
                 onChange={handleChange} 
                 className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-                id="grid-state"
+                id="vehicule_neuf_ou_location"
               >
                 <option value="new_car">Achat d'un véhicule neuf</option>
                 <option value="occasion_car">Achat d'un véhicule d'occasion</option>

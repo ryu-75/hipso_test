@@ -1,11 +1,11 @@
 import React from "react";
 
 interface ModelProps {
-  model: string;
+  type_modele: string;
   handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const ModelToTry: React.FC<ModelProps> = ({ model, handleChange }: ModelProps) => {
+const ModelToTry: React.FC<ModelProps> = ({ type_modele, handleChange }: ModelProps) => {
   return (
     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -13,12 +13,13 @@ const ModelToTry: React.FC<ModelProps> = ({ model, handleChange }: ModelProps) =
       </label>
       <div className="relative">
         <select
-          value={model}
+          value={type_modele}
           onChange={handleChange}
           className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 mb-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="grid-state"
+          id="type_modele"
           required
         >
+          <option value="" disabled>Sélectionner...</option>
           <option value="compact">Compacte</option>
           <option value="suv">SUV</option>
           <option value="elec_hybrid">Électriques & Hybrides</option>

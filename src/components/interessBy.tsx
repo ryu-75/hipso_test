@@ -1,11 +1,11 @@
 import React from "react";
 
 interface InteressProps {
-    interessBy: string;
+    achat_ou_leasing: string;
     handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const InteressBy: React.FC<InteressProps> = ({ interessBy, handleChange }: InteressProps) => {
+const InteressBy: React.FC<InteressProps> = ({ achat_ou_leasing, handleChange }: InteressProps) => {
     return(
         <div>
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -13,12 +13,13 @@ const InteressBy: React.FC<InteressProps> = ({ interessBy, handleChange }: Inter
             </label>
             <div className="relative">
                 <select 
-                    value={interessBy} 
+                    value={achat_ou_leasing} 
                     onChange={handleChange}
                     className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-                    id="grid-state" 
+                    id="achat_ou_leasing" 
                     required
                 >
+                    <option value="" disabled hidden>Sélectionner...</option>
                     <option value="buy_car">Achat d'un véhicule</option>
                     <option value="leasing_car">Leasing d'un véhicule</option>
                 </select>

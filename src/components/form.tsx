@@ -7,14 +7,14 @@ import Contact from './contact';
 
 class Form extends React.Component {
     state = {
-        first: '',
-        last: '',
-        phone: '',
-        cp: '',
-        model: '',
-        interessBy: '',
-        ifBuyVehicule: '',
-        ifLeasingVehicule: '',
+        prenom: '',
+        nom: '',
+        telephone: '',
+        ville: '',
+        type_modele: '',
+        achat_ou_leasing: '',
+        vehicule_neuf_ou_location: '',
+        duree_leasing: '',
     }
     
     constructor(props: String) {
@@ -22,32 +22,31 @@ class Form extends React.Component {
 
       this.handleContact = this.handleContact.bind(this);
       this.handleModel = this.handleModel.bind(this);
-      this.handleInteressBy = this.handleInteressBy.bind(this);
-      this.handleIfBuy = this.handleIfBuy.bind(this);
-      this.handleIfLeasing = this.handleIfLeasing.bind(this);
+      this.handleNewOrRentCar = this.handleNewOrRentCar.bind(this);
+      this.handleBuyOrLeasing = this.handleBuyOrLeasing.bind(this);
     }
 
-    handleInteressBy = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    handleBuyOrLeasing = (e: React.ChangeEvent<HTMLSelectElement>) => {
         this.setState({
-            interessBy: e.target.value,
+            achat_ou_leasing: e.target.value,
         })
     }
 
     handleModel = (e: React.ChangeEvent<HTMLSelectElement>) => {
         this.setState({
-            model: e.target.value,
+            type_modele: e.target.value,
         })
     }
 
-    handleIfLeasing = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    handleNewOrRentCar = (e: React.ChangeEvent<HTMLSelectElement>) => {
         this.setState({
-            ifLeasingVehicule: e.target.value,
+            vehicule_neuf_ou_location: e.target.value,
         })
     }
 
-    handleIfBuy = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    handleLeasingDuration = (e: React.ChangeEvent<HTMLSelectElement>) => {
         this.setState({
-            ifBuyVehicule: e.target.value,
+            duree_leasing: e.target.value,
         })
     }
 
@@ -64,37 +63,43 @@ class Form extends React.Component {
     }
 
     render() {
-        const { first, last, phone, cp, model, ifBuyVehicule, ifLeasingVehicule, interessBy } = this.state;
+        const { prenom, nom, telephone, ville, type_modele, achat_ou_leasing, vehicule_neuf_ou_location, duree_leasing } = this.state;
 
         return (
             <form className="w-screen max-w-3xl border-solid border-gray-300 border-2 p-12 rounded-lg bg-white" onSubmit={this.handleSubmit}>
                 <Contact
-                    first={first} 
-                    last={last}
-                    phone={phone}
-                    cp={cp}
+                    prenom={prenom} 
+                    nom={nom}
+                    telephone={telephone}
+                    ville={ville}
                     handleChange={this.handleContact}
                 />
                 <div className="flex flex-wrap -mx-3 mb-6 mt-8">
                     <ModelToTry 
-                        model={model} 
+                        type_modele={type_modele} 
                         handleChange={this.handleModel}
                     />
                     <InteressBy 
-                        interessBy={interessBy}
-                        handleChange={this.handleInteressBy}
+                        achat_ou_leasing={achat_ou_leasing}
+                        handleChange={this.handleBuyOrLeasing}
                     />
                 </div>
-                <div className="flex flex-wrap -mx-3 mb-6 mt-8">
-                    <IfLeasingVehicule
-                        leasing={ifLeasingVehicule}
-                        handleChange={this.handleIfLeasing}
-                    />
-                    <IfBuyVehicule
-                        buy={ifBuyVehicule}
-                        handleChange={this.handleIfBuy}
-                    />
-                </div>
+                    {achat_ou_leasing === "buy_car" && (
+                        <div className="flex flex-wrap justify-center -mx-3 mb-6 mt-8">
+                            <IfBuyVehicule
+                                vehicule_neuf_ou_location={vehicule_neuf_ou_location}
+                                handleChange={this.handleNewOrRentCar}
+                            />
+                        </div>
+                    )}
+                    {achat_ou_leasing === "leasing_car" && (
+                        <div className="flex flex-wrap justify-center -mx-3 mb-6 mt-8">
+                            <IfLeasingVehicule 
+                                duree_leasing={duree_leasing}
+                                handleChange={this.handleLeasingDuration}
+                            /> 
+                        </div>
+                    )}
                 <div className="flex items-center justify-center">
                     <div className="md:w-2/3">
                       <button className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">

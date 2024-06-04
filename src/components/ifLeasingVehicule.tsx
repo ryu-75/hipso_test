@@ -1,22 +1,22 @@
 import React from "react";
 
 interface LeasingProps {
-  leasing: string;
+  duree_leasing: string;
   handleChange: (e:React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const IfLeasingVehicule: React.FC<LeasingProps> = ({ leasing, handleChange }:LeasingProps) => {
+const IfLeasingVehicule: React.FC<LeasingProps> = ({ duree_leasing, handleChange }:LeasingProps) => {
     return(
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Si leasing d'un voiture
+                Si leasing d'une voiture
             </label>
             <div className="relative">
               <select
-                value={leasing} 
+                value={duree_leasing} 
                 onChange={handleChange} 
                 className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-                id="grid-state"
+                id="duree_leasing"
               >
                 <option value="6M">6 mois</option>
                 <option value="12M">12 mois</option>
