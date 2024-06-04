@@ -90,6 +90,7 @@ const Contact: React.FC<ContactProps> = ({ prenom, nom, telephone, handleChange 
                         value: cityName,
                     },
                 } as React.ChangeEvent<HTMLInputElement>;
+                setCityError(false);
                 handleChange(event);
             } else {
                 setCityError(true);
@@ -104,7 +105,7 @@ const Contact: React.FC<ContactProps> = ({ prenom, nom, telephone, handleChange 
     const handleVilleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setPostalCode(value);
-        console.log(fetchCity(value));
+        fetchCity(value);
     }
 
     return (

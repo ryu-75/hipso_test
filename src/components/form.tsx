@@ -58,6 +58,10 @@ class Form extends React.Component {
 
     handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (this.state.ville === "") {
+            alert("Le code postal est incorrect");
+            return ;
+        }
         const formData = {...this.state};
         axios.put('https://hooks.zapier.com/hooks/catch/16422019/37w62x0?em=sasha.lorion@gmail.com', {
             data: JSON.stringify(formData),

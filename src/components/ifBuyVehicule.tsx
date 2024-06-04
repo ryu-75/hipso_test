@@ -19,7 +19,7 @@ const IfBuyVehicule: React.FC<BuyComponent> = ({ vehicule_neuf_ou_location, hand
                 id="vehicule_neuf_ou_location"
               >
                 <option value="" disabled hidden>Sélectionner...</option>
-                <option value="achat">Achat d'un véhicule neuf</option>
+                <option value="neuf">Achat d'un véhicule neuf</option>
                 <option value="occasion">Achat d'un véhicule d'occasion</option>
               </select>
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
