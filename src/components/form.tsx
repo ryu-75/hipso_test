@@ -4,17 +4,18 @@ import ModelToTry from './modelToTry';
 import IfBuyVehicule from './ifBuyVehicule';
 import IfLeasingVehicule from './ifLeasingVehicule';
 import Contact from './contact';
+import axios from 'axios';
 
 class Form extends React.Component {
     state = {
-        prenom: '',
-        nom: '',
-        telephone: '',
-        ville: '',
         type_modele: '',
         achat_ou_leasing: '',
         vehicule_neuf_ou_location: '',
         duree_leasing: '',
+        nom: '',
+        prenom: '',
+        ville: '',
+        telephone: '',
     }
     
     constructor(props: String) {
@@ -58,9 +59,19 @@ class Form extends React.Component {
     handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = {...this.state};
-        console.log(formData);
+        axios.put('https://hooks.zapier.com/hooks/catch/16422019/37w62x0?em=sasha.lorion@gmail.com', {
+            data: JSON.stringify(formData),
+            headers: {'Content-Type':'application/json'},
+        })
+        .then((response) => {
+            axios.post('https://hooks.zapier.com/hooks/catch/16422019/37w62x0?em=sasha.lorion@gmail.com', {
+                data: JSON.stringify(response.data),
+                headers: {'Content-Type':'application/json'},
+            })
+        })
         alert(JSON.stringify(formData, null, 2));
     }
+
 
     render() {
         const { prenom, nom, telephone, ville, type_modele, achat_ou_leasing, vehicule_neuf_ou_location, duree_leasing } = this.state;
@@ -84,7 +95,7 @@ class Form extends React.Component {
                         handleChange={this.handleBuyOrLeasing}
                     />
                 </div>
-                    {achat_ou_leasing === "buy_car" && (
+                    {achat_ou_leasing === "achat" && (
                         <div className="flex flex-wrap justify-center -mx-3 mb-6 mt-8">
                             <IfBuyVehicule
                                 vehicule_neuf_ou_location={vehicule_neuf_ou_location}
@@ -92,7 +103,7 @@ class Form extends React.Component {
                             />
                         </div>
                     )}
-                    {achat_ou_leasing === "leasing_car" && (
+                    {achat_ou_leasing === "leasing" && (
                         <div className="flex flex-wrap justify-center -mx-3 mb-6 mt-8">
                             <IfLeasingVehicule 
                                 duree_leasing={duree_leasing}
