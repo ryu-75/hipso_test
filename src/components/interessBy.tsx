@@ -19,7 +19,7 @@ const InteressBy: React.FC<InteressProps> = ({ achat_ou_leasing, handleChange }:
                     id="achat_ou_leasing" 
                     required
                 >
-                    <option value="" disabled hidden>Sélectionner...</option>
+                    <option value="" disabled>Sélectionner...</option>
                     <option value="achat">Achat d'un véhicule</option>
                     <option value="leasing">Leasing d'un véhicule</option>
                 </select>
